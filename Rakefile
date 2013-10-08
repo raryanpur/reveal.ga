@@ -5,14 +5,14 @@ task :point_to, :number do |t, number|
   lesson = determine_lesson_dir(number[:number])
   puts "Updating reveal.js to point to lesson #{lesson}"
   `rm -f revealjs/slides`
-  slides_ln = `ls | grep #{lesson}_*`.chop!
-  `ln -s ../#{slides_ln}/slides revealjs/slides`
+  slides_ln = `ls ../ | grep #{lesson}_*`.chop!
+  `ln -s ~/Documents/ga_courses/BEWD_BOS_1/#{slides_ln}/slides revealjs/slides`
 end
 
 namespace :g do
   desc "start the revealjs server"
   task :serve do
-    `cd revealjs && grunt serve >> log/grunt.log 2>&1 &`
+    `cd revealjs && grunt serve`
   end
 
   desc "stop the revealjs server"
